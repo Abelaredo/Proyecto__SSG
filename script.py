@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
-import requests
+import requests # type: ignore
 
 # API de GitHub para obtener contribuciones
-REPO = "user/repo"  # Cambia esto por tu repositorio
+REPO = "Abelaredo/Proyecto__SSG"  # Cambia esto por tu repositorios
 API_URL = f"https://api.github.com/repos/{REPO}/contributors"
 
 response = requests.get(API_URL)
