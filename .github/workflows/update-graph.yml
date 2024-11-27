@@ -26,5 +26,5 @@ jobs:
         pip install matplotlib requests  # Instala las dependencias que necesita tu script
 
     - name: Generate graph
-      run: generate_graph.py  # Asegúrate de que este archivo esté en la raíz del repositorio o ajusta la ruta
+      run: python generate_graph.py  # Asegúrate de que este archivo esté en la raíz del repositorio o ajusta la ruta
 
