@@ -34,5 +34,5 @@ jobs:
         git config --global user.email 'actions@github.com'
         git add contributions.png
         git commit -m "Update contributions graph"
-        git push https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git/ HEAD:main
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git/ HEAD:main
 
