@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import requests # type: ignore
+import requests
 
 # API de GitHub para obtener contribuciones
 REPO = "Abelaredo/Proyecto__SSG"  # Cambia esto por tu repositorios
