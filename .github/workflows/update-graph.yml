@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+permissions:
+  contents: write
+
 jobs:
   update-graph:
     runs-on: ubuntu-latest
@@ -28,15 +31,16 @@ jobs:
     - name: Generate graph
       run: python generate_graph.py
 
-    - name: Pull latest changes
+    - name: Check for changes
+      id: check_changes
       run: |
-        git pull origin main
+        git diff --exit-code contributions.png || echo "changed"
 
-    - name: Commit and push the image
+    - name: Commit and push the image if changed
+      if: steps.check_changes.outputs.changed == 'changed'
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
         git add contributions.png
         git commit -m "Update contributions graph"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git/ HEAD:main
-
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
