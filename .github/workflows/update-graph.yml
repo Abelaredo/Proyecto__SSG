@@ -35,4 +35,5 @@ jobs:
         git add contributions.png
         git commit -m "Update contributions graph"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git/ HEAD:main
+        git pull https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git/ HEAD:main
 
