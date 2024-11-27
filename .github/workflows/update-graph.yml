@@ -1,35 +1,30 @@
-name: Update Contributions Graph
+name: Update Graph
 
 on:
+  push:
+    branches:
+      - main  # O la rama que prefieras, asegúrate de que coincida con la rama que usas
   schedule:
-    - cron: '0 0 * * *'  # Ejecutar diariamente
-  workflow_dispatch:  # Permitir ejecución manual
+    - cron: '0 0 * * *'  # Esto ejecuta el workflow todos los días a medianoche. Puedes ajustarlo
 
 jobs:
   update-graph:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3  # Asegúrate de que este paso esté presente para descargar el repositorio
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
+        python-version: '3.x'  # Cambia esto si usas una versión específica de Python
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install matplotlib requests
+        pip install matplotlib requests  # Instala las dependencias que necesita tu script
 
     - name: Generate graph
-      run: python generate_graph.py
+      run: generate_graph.py  # Asegúrate de que este archivo esté en la raíz del repositorio o ajusta la ruta
 
-    - name: Commit and push changes
-      run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
-        git add contributions.png
-        git commit -m "Update contributions graph"
-        git push
