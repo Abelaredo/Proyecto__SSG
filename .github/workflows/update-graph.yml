@@ -1,0 +1,35 @@
+name: Update Contributions Graph
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Ejecutar diariamente
+  workflow_dispatch:  # Permitir ejecución manual
+
+jobs:
+  update-graph:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install matplotlib requests
+
+    - name: Generate graph
+      run: python generate_graph.py
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add contributions.png
+        git commit -m "Update contributions graph"
+        git push
