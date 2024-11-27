@@ -30,10 +30,10 @@ jobs:
 
     - name: Commit and push the image
       env:
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}  # Usa el token que guardaste
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Usa el token que guardaste
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
         git add contributions.png
         git commit -m "Update contributions graph"
-        git push https://x-access-token:${{ secrets.ACTIONS_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Abelaredo/Proyecto__SSG.git HEAD:main  # Aquí se reemplaza con el nombre de tu repositorio
