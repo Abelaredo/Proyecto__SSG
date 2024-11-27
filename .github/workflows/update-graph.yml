@@ -28,3 +28,10 @@ jobs:
     - name: Generate graph
       run: python generate_graph.py  # Asegúrate de que este archivo esté en la raíz del repositorio o ajusta la ruta
 
+    - name: Commit and push the image
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add contributions.png  # Asegúrate de que el nombre coincida con el archivo generado
+        git commit -m "Update contributions graph"
+        git push
