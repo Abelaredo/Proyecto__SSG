@@ -11,6 +11,7 @@ data = [user for user in data if user['login'] != 'actions-user']
 
 contributors = [user['login'] for user in data]
 contributions = [user['contributions'] for user in data]
+plt.xticks(range(0, max(contributions) + 1, 1))
 
 plt.barh(contributors, contributions, color='skyblue')
 plt.xlabel('Contributions')
