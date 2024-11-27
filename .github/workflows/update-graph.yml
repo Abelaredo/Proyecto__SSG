@@ -28,6 +28,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install matplotlib requests
 
+    - name: Pull latest changes
+      run: |
+        git pull origin main
+
     - name: Generate graph
       run: python generate_graph.py
 
