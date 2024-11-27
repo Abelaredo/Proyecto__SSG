@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *'  # Ejecutar cada día a medianoche (ajustar según lo necesites)
 
 jobs:
   update-graph:
@@ -26,14 +26,14 @@ jobs:
         pip install matplotlib requests
 
     - name: Generate graph
-      run: python generate_graph.py
+      run: python generate_graph.py  # Ejecuta el script para generar el gráfico
 
     - name: Commit and push the image
       env:
-          ACTION_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Usa el token que guardaste
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usa el token correctamente aquí
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
         git add contributions.png
         git commit -m "Update contributions graph"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git/ HEAD:main
+        git push https://github.com/${{ github.repository }}.git HEAD:main  # Usar la URL del repositorio sin el token explícito
