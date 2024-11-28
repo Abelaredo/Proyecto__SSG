@@ -31,10 +31,21 @@ jobs:
     - name: Generate graph
       run: python generate_graph.py
 
+    - name: Check for changes
+      id: git_status
+      run: |
+        git add contributions.png
+        if git diff --cached --quiet; then
+          echo "No changes to commit"
+          echo "changed=false" >> $GITHUB_ENV
+        else
+          echo "Changes detected"
+          echo "changed=true" >> $GITHUB_ENV
+
     - name: Commit and push the image
+      if: env.changed == 'true'
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
-        git add contributions.png
         git commit -m "Update contributions graph"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
