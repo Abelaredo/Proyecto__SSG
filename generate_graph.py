@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import requests
 
-REPO = "user/repo"
+REPO = "Abelaredo/rProyecto__SSG"
 API_URL = f"https://api.github.com/repos/{REPO}/contributors"
 
 response = requests.get(API_URL)
