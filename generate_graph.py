@@ -12,19 +12,16 @@ data = [user for user in data if user['login'] != 'actions-user']
 contributors = [user['login'] for user in data]
 contributions = [user['contributions'] for user in data]
 
-# Filter contributions to show only multiples of 5
-contributions_filtered = [contrib for contrib in contributions if contrib % 5 == 0]
+# Filter ticks to show only multiples of 5
+ticks = [x for x in range(min(contributions), max(contributions) + 1) if x % 5 == 0]
 
-# Filter contributors based on filtered contributions
-filtered_contributors = [contributor for contributor, contrib in zip(contributors, contributions_filtered) 
-                         if contrib == contrib]  # Keep only contributors with displayed contributions
-
-# Create the plot with filtered data
-plt.barh(filtered_contributors, contributions_filtered, color='skyblue')
-
-# Set x-axis ticks and labels to only show multiples of 5
-plt.xticks(range(0, max(contributions_filtered) + 1, 5))  # Generate ticks from 0 to max with 5 interval
+plt.barh(contributors, contributions, color='skyblue')
 plt.xlabel('Contributions')
 plt.ylabel('Users')
-plt.title('GitHub Contributions (Multiples of 5)')
+plt.title('GitHub Contributions')
+
+# Set x-axis ticks and labels
+plt.xticks(ticks)
+plt.gca().xaxis.set_major_locator(plt.MultipleLocator(5))  # Set major tick spacing to 5
+
 plt.savefig('contributions.png')
