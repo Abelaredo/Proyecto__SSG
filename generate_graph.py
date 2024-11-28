@@ -12,16 +12,22 @@ data = [user for user in data if user['login'] != 'actions-user']
 contributors = [user['login'] for user in data]
 contributions = [user['contributions'] for user in data]
 
-# Filter ticks to show only multiples of 5
-ticks = [x for x in range(min(contributions), max(contributions) + 1) if x % 5 == 0]
+# Obtener el rango de contribuciones
+min_contrib = min(contributions)
+max_contrib = max(contributions)
+
+# Crear una lista con todos los números del rango
+all_ticks = list(range(min_contrib, max_contrib + 1))
 
 plt.barh(contributors, contributions, color='skyblue')
 plt.xlabel('Contributions')
 plt.ylabel('Users')
 plt.title('GitHub Contributions')
 
-# Set x-axis ticks and labels
-plt.xticks(ticks)
-plt.gca().xaxis.set_major_locator(plt.MultipleLocator(5))  # Set major tick spacing to 5
+# Establecer los ticks en todos los números
+plt.xticks(all_ticks)
+
+# Configurar para que solo se muestren las etiquetas de los múltiplos de 5
+plt.gca().xaxis.set_major_locator(plt.MultipleLocator(5))
 
 plt.savefig('contributions.png')
