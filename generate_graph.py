@@ -13,8 +13,8 @@ contributors = [user['login'] for user in data]
 contributions = [user['contributions'] for user in data]
 
 plt.barh(contributors, contributions, color='skyblue')
-plt.xlabel('Contributions')
-plt.ylabel('Users')
-plt.title('GitHub Contributions')
+plt.xlabel('Contribuciones')
+plt.ylabel('Usuarios')
+plt.title('Aportes github')
 
 plt.savefig('contributions.png')
