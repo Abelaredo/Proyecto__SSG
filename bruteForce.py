@@ -35,3 +35,4 @@ fuerza_bruta(password_objetivo, longitud_maxima)
 
 # Nota: Este enfoque es extremadamente lento y no es práctico para contraseñas reales.
 # Se recomienda utilizar métodos más avanzados y seguros para la gestión de contraseñas.
+# Este script es solo un ejemplo didáctico para comprender el concepto de fuerza bruta.

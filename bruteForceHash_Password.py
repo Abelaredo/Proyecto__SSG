@@ -1,10 +1,13 @@
-import hashlib
+
 import itertools #proporciona una serie de herramientas y funciones para trabajar con iteradores
 import string #proporciona constantes con el alfabeto en mayúsculas y minúsculas, dígitos numéricos y caracteres especiales
 import time  # Importar módulo para medir el tiempo
+import hashlib
 
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
+
+#hashlib es un módulo de Python que permite cifrar contraseñas y otros datos sensibles.
 
 def fuerza_bruta(password_objetivo, longitud_maxima):
     password_objetivo_hash = hash_password(password_objetivo)
